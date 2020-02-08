@@ -17,6 +17,7 @@ pipeline {
           success{
             junit '**/target/surefire-reports/*.xml'
           }
+        }
       }
       stage('Two'){
         steps{
