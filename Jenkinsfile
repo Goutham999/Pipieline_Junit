@@ -1,14 +1,22 @@
 pipeline {
   agent any
+  
+  tools{
+    maven "Maven3.6.3"
+  }
     stages{
       stage('One'){
         steps{
           echo 'THis is stage 1'
-          sh "mvn clean install"
-          bat label: '', script: ''' cd target
-              java -jar SampleCode.jar'''
+          bat "mvn clean package"
+          bat "cd target"
+          bat "java -jar SampleCode.jar"
           
         }
+        post {
+          success{
+            junit '**/target/surefire-reports/*.xml'
+          }
       }
       stage('Two'){
         steps{
