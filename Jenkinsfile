@@ -8,6 +8,7 @@ pipeline {
       stage('One'){
         steps{
           echo 'THis is stage 1'
+          git 'https://github.com/balaatgithub1/sample-code-java.git'
           bat "mvn clean package"
           bat "cd target"
           bat "java -jar SampleCode.jar"
