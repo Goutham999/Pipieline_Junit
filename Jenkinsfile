@@ -4,7 +4,7 @@ pipeline {
       stage('One'){
         steps{
           echo 'THis is stage 1'
-          sh "mvn package"
+          sh "mvn clean verify"
           bat label: '', script: ''' cd target
               java -jar SampleCode.jar'''
           
