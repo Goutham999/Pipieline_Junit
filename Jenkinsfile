@@ -4,11 +4,16 @@ pipeline {
       stage('One'){
         steps{
           echo 'THis is stage 1'
+          sh "mvn package"
+          sh "cd target"
+          sh "java -jar SampleCode.jar"
+          
         }
       }
       stage('Two'){
         steps{
           echo 'This is stage 2'
+          step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
         }
       }
 
